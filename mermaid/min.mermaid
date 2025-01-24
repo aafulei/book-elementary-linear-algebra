@@ -1,0 +1,100 @@
+---
+title: Minimum Route to "Col Rank = Row Rank"
+config:
+    theme: forest
+    layout: elk
+---
+flowchart TD
+
+def_vec[<b>vector</b>]
+def_add[<b>addition</b>]
+def_sca_mul[<b>scalar multiplication</b>]
+def_vec_space[<b>vector space</b>]
+
+def_vec --> def_vec_space
+def_vec --> def_add
+def_vec --> def_sca_mul
+def_add --> def_vec_space
+def_sca_mul --> def_vec_space
+
+def_subspace[<b>subspace</b>]
+def_lin_comb[<b>linear combination</b>]
+def_span[<b>span</b>]
+th_2_1[<b>Theorem 2.1</b> <br> Existence of n vectors that span Vn.]
+def_sol_space[<b>solution space</b>]
+
+def_vec_space --> def_subspace
+def_vec --> def_lin_comb
+def_lin_comb --> def_span
+def_subspace --> def_span
+def_span --> th_2_1
+def_subspace --> def_sol_space
+
+th_3_1[<b>Theorem 3.1</b> <br> Underdetermined homogeneous systems have nonzero solutions.]
+
+def_lin_ind[<b>linear independence</b>]
+th_4_1[<b>Theorem 4.1</b> <br> An equivalent condition for linear independence.]
+co_4_2["<b>Corollary 4.2</b> <br> Linearly independent vectors + an outside vector: still linearly independent."]
+th_4_3["<b>Theorem 4.3</b> <br> # Vectors in linearly independent sets <= # vectors in spanning sets."]
+def_dim["<b>dimension</b>"]
+th_4_4[<b>Theorem 4.4</b> <br> Any independent sets of dimension number of vectors span the subspace.]
+def_basis[<b>basis</b>]
+th_4_5[<b>Theorem 4.5</b> <br> Expand a set of independent vectors to a basis.]
+
+def_lin_comb --> def_lin_ind
+def_lin_ind --> th_4_1
+th_4_1 --> co_4_2
+th_4_1 --> th_4_3
+def_span --> th_4_3
+th_3_1 --> th_4_3
+co_4_2 --> def_dim
+th_4_3 --> def_dim
+th_2_1 --> def_dim
+def_dim --> th_4_4
+co_4_2 --> th_4_4
+th_4_4 --> def_basis
+def_basis --> th_4_5
+co_4_2 --> th_4_5
+th_4_4 --> th_4_5
+
+def_mat[<b>matrix</b>]
+def_row_space[<b>row space</b>]
+def_rank[<b>rank</b> <br>]
+def_elem_row_op[<b>elementary row operations</b>]
+th_5_1[<b>Theorem 5.1</b> <br> Elementary row operations maintain the row space.]
+def_rref["<b>reduced row echelon form (RREF)</b>"]
+
+def_mat --> def_row_space
+def_subspace --> def_row_space
+def_row_space --> def_rank
+def_dim --> def_rank
+def_mat --> def_elem_row_op
+def_elem_row_op --> th_5_1
+def_row_space --> th_5_1
+def_elem_row_op --> def_rref
+
+def_coef_mat[<b>coefficient matrix</b>]
+th_6_1[<b>Theorem 6.1</b> <br> Elementary row operations maintain the solution space.]
+th_6_2["<b>Theorem 6.2</b> <br> Rank(coefficient matrix) <br> + dim(solution space) <br> = number of unknowns."]
+
+def_mat --> def_coef_mat
+def_coef_mat --> th_6_1
+def_elem_row_op --> th_6_1
+def_sol_space --> th_6_1
+def_rank --> th_6_2
+th_5_1 --> th_6_2
+th_6_1 --> th_6_2
+def_rref --> th_6_2
+
+def_lin_trans[<b>linear transformation</b>]
+def_range_space[<b>range space</b>]
+th_7_1["<b>Theorem 7.1</b> <br> Rank(coefficient matrix) = dim(range space)."]
+co_7_3[<b>Corollary 7.3</b> <br> Col rank = row rank.]
+
+def_mat --> def_lin_trans
+def_subspace --> def_range_space
+def_lin_trans --> def_range_space
+def_range_space --> th_7_1
+th_4_5 --> th_7_1
+th_6_2 --> th_7_1
+th_7_1 --> co_7_3

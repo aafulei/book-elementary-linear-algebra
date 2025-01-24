@@ -1,0 +1,203 @@
+---
+title: Concept Map for Elementary Linear Algebra by Munkres (1964)
+config:
+  theme: base
+  layout: elk
+---
+flowchart TD
+
+subgraph ch_1["<b>Chapter 1. <br> Vector Spaces</b>"]
+    def_vec[<b>vector</b> <br> <i>n-tuple of real numbers</i>]
+    subgraph sub_operations["<i>Operations</i>"]
+        def_add[<b>addition</b>]
+        def_sca_mul[<b>scalar multiplication</b>]
+        def_dot_prod[<b>dot product</b>]
+    end
+    def_vec_space_prop["<b>vector space properties <br> (1) to (8)</b>"]
+    def_vec_space["<b>vector space</b> <br> <i>set of all n-tuples of real numbers (Vn), or more generally, set of objects observing the 8 vector space properties</i>"]
+    def_dot_prod_prop["<b>dot product properties <br> (1) to (4)</b>"]
+    subgraph sub_ex_1["<i>In Exercises</i>"]
+        def_norm[<b>norm</b>]
+        th_cauchy[<b>Cauchy-Schwarz inequality</b> <br> <i>Absolute value of dot product <= product of vector norms.</i>]
+    end
+end
+
+def_vec --> def_vec_space
+def_vec --> def_add
+def_vec --> def_sca_mul
+def_vec --> def_dot_prod
+def_add --> def_vec_space_prop
+def_sca_mul --> def_vec_space_prop
+def_vec_space_prop --> def_vec_space
+def_dot_prod --> def_dot_prod_prop
+def_dot_prod --> def_norm
+def_norm --> th_cauchy
+
+subgraph ch_2["<b>Chapter 2. <br> Subspaces</b>"]
+    def_subspace[<b>subspace</b>]
+    def_lin_comb[<b>linear combination</b>]
+    def_span[<b>span</b>]
+    th_2_1[<b>Theorem 2.1</b> <br> Existence of n vectors that span Vn.]
+    def_homo_sys[<b>homogeneous system</b>]
+    th_2_2["<b>Theorem 2.2</b> <br> If a system is (not) homogeneous, the solution set is (not) a subspace."]
+    def_sol_space[<b>solution space</b>]
+end
+
+def_vec_space --> def_subspace
+def_vec --> def_lin_comb
+def_lin_comb --> def_span
+def_subspace --> def_span
+def_span --> th_2_1
+def_homo_sys --> th_2_2
+def_subspace --> th_2_2
+th_2_2 --> def_sol_space
+
+subgraph ch_3["<b>Chapter 3. <br> A Useful Theorem</b>"]
+    th_3_1[<b>Theorem 3.1</b> <br> Underdetermined homogeneous systems have nonzero solutions.]
+end
+
+subgraph ch_4["<b>Chapter 4. <br> Linear Independence, Bases, and Dimension</b>"]
+    def_lin_ind["<b>linear independence</b> <br> no vector is a linear combination of others (exception: set of zero vector is not considered independent)"]
+    th_4_1[<b>Theorem 4.1</b> <br> An equivalent condition for linear independence.]
+    co_4_2[<b>Corollary 4.2</b> <br> A set of linearly independent vectors joined with a vector outside its spanned subspace is still linearly independent.]
+    th_4_3[<b>Theorem 4.3</b> <br> Any independent sets in a subspace can have no more vectors than do any spanning sets in that subspace.]
+    def_dim["<b>dimension</b> <br> number of vectors in the largest independent set(s)"]
+    th_4_4[<b>Theorem 4.4</b> <br> Any independent sets of dimension number of vectors span the subspace.]
+    subgraph sub_nice_3["<i>Nice to Have</i>"]
+        du_4_4[<b>Dual Theorem 4.4</b> <br> Any spanning sets of dimension number of vectors are linearly independent.]
+    end
+    def_basis[<b>basis</b>]
+    th_4_5[<b>Theorem 4.5</b> <br> Expand a set of independent vectors to a basis.]
+    th_4_6[<b>Theorem 4.6</b> <br> Shrink of a set of spanning vectors to a basis.]
+    subgraph sub_ex_4["<i>In Exercises</i>"]
+        def_ortho[<b>orthogonal</b>]
+        def_gsp[<b>Gram-Schmidt process</b>]
+    end
+end
+
+def_lin_comb --> def_lin_ind
+def_lin_ind --> th_4_1
+th_4_1 --> co_4_2
+th_4_1 --> th_4_3
+def_span --> th_4_3
+th_3_1 --> th_4_3
+co_4_2 --> def_dim
+th_4_3 --> def_dim
+th_2_1 --> def_dim
+def_dim --> th_4_4
+co_4_2 --> th_4_4
+th_4_3 --> du_4_4
+th_4_4 --> def_basis
+def_basis --> th_4_5
+co_4_2 --> th_4_5
+th_4_4 --> th_4_5
+def_basis --> th_4_6
+def_dot_prod --> def_ortho
+def_lin_ind --> def_ortho
+def_ortho --> def_gsp
+
+subgraph ch_5["<b>Chapter 5. <br> Row Operations on Matrices</b>"]
+    def_mat[<b>matrix</b>]
+    def_row_space[<b>row space</b>]
+    def_rank[<b>rank</b> <br> dimension of row space]
+    def_elem_row_op[<b>elementary row operations</b> <br> 1. row interchange <br> 2. row multiply <br> 3. row replace]
+    th_5_1[<b>Theorem 5.1</b> <br> Elementary row operations maintain the row space.]
+    def_rref["<b>reduced row echelon form (RREF)</b>"]
+    th_5_2[<b>Theorem 5.2</b> <br> Nonzero rows in reduced row-echelon form form a basis of the row space.]
+    co_5_3[<b>Corollary 5.3</b> <br> Rank equals the number of nonzero rows in reduced row echelon form.]
+    subgraph sub_ex_5["<i>In Exercises</i>"]
+        def_t[<b>transpose</b>]
+    end
+end
+
+def_mat --> def_row_space
+def_subspace --> def_row_space
+def_row_space --> def_rank
+def_dim --> def_rank
+def_mat --> def_elem_row_op
+def_elem_row_op --> th_5_1
+def_row_space --> th_5_1
+def_elem_row_op --> def_rref
+def_rref --> th_5_2
+def_basis --> th_5_2
+th_5_2 --> co_5_3
+def_mat --> def_t
+
+subgraph ch_6["<b>Chapter 6. <br> Homogeneous Systems</b>"]
+    def_coef_mat[<b>coefficient matrix</b>]
+    th_6_1[<b>Theorem 6.1</b> <br> Elementary row operations maintain the solution space.]
+    th_6_2["<b>Theorem 6.2</b> <br> Rank(coefficient matrix) <br> + dim(solution space) <br> = number of unknowns."]
+end
+
+def_mat --> def_coef_mat
+def_coef_mat --> th_6_1
+def_elem_row_op --> th_6_1
+def_rank --> th_6_2
+th_5_1 --> th_6_2
+th_6_1 --> th_6_2
+def_rref --> th_6_2
+
+subgraph ch_7["<b>Chapter 7. <br> The General System</b>"]
+    def_lin_trans[<b>linear transformation</b>]
+    def_range_space[<b>range space</b>]
+    th_7_1["<b>Theorem 7.1</b> <br> Rank(coefficient matrix) = dim(range space)."]
+    co_7_2[<b>Corollary 7.2</b> <br> If rank < number of equations, there exists b for which Ax = b has no solutions. If rank = number of equations, range space is Vn.]
+    co_7_3[<b>Corollary 7.3</b> <br> Col rank = row rank.]
+    th_7_4[<b>Theorem 7.4</b> <br> Solutions to general linear system = a particular solution + solutions to the homogeneous system.]
+end
+
+def_mat --> def_lin_trans
+def_subspace --> def_range_space
+def_lin_trans --> def_range_space
+def_range_space --> th_7_1
+th_4_5 --> th_7_1
+th_6_2 --> th_7_1
+th_7_1 --> co_7_2
+th_7_1 --> co_7_3
+def_lin_trans --> th_7_4
+
+subgraph ch_8["<b>Chapter 8. <br> Determinants </b>"]
+    def_det_prop["<b>determinants properties <br> (1) to (5)</b>"]
+    def_submat[<b>submatrix</b>]
+    th_8_1["<b>Theorem 8.1 </b> <br> For a p-by-n matrix, rows are linearly independent if and only if there exists a p-by-p submatrix whose determinant is nonzero."]
+    th_8_2[<b>Theorem 8.2 </b> <br> Rank of a matrix equals the number of rows of the largest square submatrix in it whose determinant is nonzero.]
+    co_8_3[<b>Corollary 8.3 </b> <br> Rank of a n-by-n matrix has rank n if and only if its determinant is nonzero.]
+    def_num_of_inv[<b>number of inversions</b>]
+    def_odd_even_perm[<b>odd / even permutation</b>]
+    def_sign_of_perm[<b>sign of permutation</b>]
+    th_8_4["<b>Theorem 8.4 </b> <br> Interchanging two adjacent elements in a permutation changes its sign."]
+    def_det[<b>determinants</b>]
+    th_8_5["<b>Theorem 8.5 </b> <br> <i>Property (1) of Determinants</i> <br> Interchanging a row in square matrix A changes the sign of the determinant."]
+    th_8_6["<b>Theorem 8.6 </b> <br> <i>Property (3) of Determinants</i> <br> Replacing a row in square matrix A with the sum of this row and a multiple of another row will not change the determinant."]
+    th_8_7["<b>Theorem 8.7 </b> <br> The determinant of a square matrix in triangular form is the product of the elements along its diagonal."]
+end
+
+def_det_prop --> th_8_1
+def_submat --> th_8_1
+th_8_1 --> th_8_2
+th_8_2 --> co_8_3
+def_num_of_inv --> def_odd_even_perm
+def_odd_even_perm --> def_sign_of_perm
+def_sign_of_perm --> th_8_4
+th_8_4 --> def_det_prop
+def_sign_of_perm --> def_det
+def_det --> def_det_prop
+th_8_4 --> th_8_5
+def_det --> th_8_6
+th_8_5 --> th_8_6
+th_8_5 --> def_det_prop
+th_8_6 --> def_det_prop
+def_det_prop --> th_8_7
+co_5_3 --> th_8_1
+
+subgraph ch_9["<b>Chapter 9. <br> Function Spaces </b>"]
+    def_zero_func[<b>zero function</b>]
+    def_sca_prod_func[<b>scalar product</b> <br> <i>between two functions</i>]
+    def_func_space[<b>function space</b>]
+end
+
+def_zero_func --> def_func_space
+def_sca_prod_func --> def_func_space
+def_dot_prod_prop --> def_sca_prod_func
+def_vec_space --> def_func_space
+
